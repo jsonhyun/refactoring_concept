@@ -28,19 +28,14 @@ public class Customer {
 //		비디오 종류별 대여료 계산
 		for(Rental each : rentals) {
 			
-//			적립 포인트를 1포인트 증가
-			frequenRenterPoints++;
-			
-//			최신물을 이틀 이상 대연하면 보너스 포인트 지급
-			if((each.getMovie().getPriceCode() == Movie.NEW_RELEASE)&& each.getDaysRented() > 1) {
-				frequenRenterPoints++;
-			}
+//			적립 포인트를 2 또는 1포인트 증가에 대한 메서드  Rental 클래스에 생성
+			frequenRenterPoints+= each.getFrequenRenterPoints();
 			
 //			이번에 대여하는 비디오 정보와 대여료 출력
 			result.append("\t"+each.getMovie().getTitle());
 			result.append("\t"+String.valueOf(each.getCharge())+"\n");
 			
-//			현재까지 누적된 총 대여료
+//			현재까지 누적된 총 대여료에 대한 메서드를 Rental 클래스에 생성
 			totalAmount += each.getCharge();
 		}//end of for-loop
 		result.append("누적 대여료 : "+String.valueOf(totalAmount)+"\n");
